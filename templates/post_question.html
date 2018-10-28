@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Post Question {% endblock %}
+
+{% block pagecontent %}
+
+<section>
+
+	<div class="row">
+		<div class="col m6 offset-m3">
+			<div class="card-panel">
+				<span>
+					
+					<a href="{{ url_for( 'postQn' ) }}" class="orange-text text-lighten-1">
+						<h4 class="center">Ask A Question</h4>
+					</a>
+
+					
+					{% from "includes/_formhelpers.html" import render_field %}
+			 <form method="POST" ACTION="" enctype="multipart/form-data">
+			 <div class="input-field">
+			 	{{render_field(form.question_title, class="form-control")}}
+			 </div>
+			 <div class="input-field">
+			 	{{render_field(form.question, class="form-control")}}
+			 </div>
+			 <div class="input-field">
+			 	{{render_field(form.tags, class="form-control")}}
+			 </div><br><br>
+
+					<div class="">
+						<label for="qnimage" class="left">
+							Image
+						</label>
+						<input id="qnimage" type="file" class="validate right" name="image">
+					</div><br /><br />	
+
+					<div class="input-field center">
+						<input id="post_qn_btn" type="submit" 
+						class="validate btn" 
+						value="Submit Question" />
+					</div>
+						
+					</form>
+
+				</span>
+
+				<span>
+					<a href="{{ url_for( 'allQn' ) }}" 
+					class="blue-text text-lighten-1">
+						View All Questions
+					</a>
+				</span>
+			</div>
+		</div>
+	</div><!-- end: row -->
+
+</section>
+
+{% endblock %}
+
+
+<!-- more js CODE! here... -->... -->
+{% block morejs %}{% endblock %}

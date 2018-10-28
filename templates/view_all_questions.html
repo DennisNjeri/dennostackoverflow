@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Post Question {% endblock %}
+
+{% block pagecontent %}
+
+<section>
+
+	<div class="row">
+		<div class="col m6 offset-m3">
+			<div class="card-panel">
+				<span>
+					
+					<a href="{{ url_for( 'allQn' ) }}" class="orange-text text-lighten-1">
+						<h4 class="center">All Questions</h4>
+					</a>
+
+				</span>
+			</div>
+		</div>
+	</div><!-- end: row -->
+
+	<div class="container">
+		
+		<div class="row">
+			{% for data in datas %}
+			<div class="col m3 center">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title">{{data[1]}}</span>
+						<p>
+							{{ data[2] }}
+						</p>
+					</div>
+					<div class="card-action">
+						<a href="/view_question/{{ data[0] }}" 
+						title="View Question In Full" 
+						class="btn">
+							<i class="material-icons">details</i>
+						</a>
+					</div>
+				</div>
+			</div> <!-- for LOOPING !! -->
+			{% endfor %}
+		</div><!-- end: row -->
+
+	</div><!-- end: container -->
+
+</section>
+
+{% endblock %}
+
+
+<!-- more js CODE! here... -->... -->
+{% block morejs %}{% endblock %}

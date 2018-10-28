@@ -1,0 +1,20 @@
+<img src="{{url_for('static', filename=value[1] )}}" 
+											class="circle responsive-img" 
+											style="width:60px; height:60px;" />			
+										</div>
+										<img src="{{ user[6] }}" 
+											class="circle responsive-img" 
+											style="width:60px; height:60px;" />	
+											{% if answerData %}
+	<table class="responsive-table highlight">
+		<tbody>
+			{% for key,value in answerData.items() %}
+				<tr> Answer-Id[ {{ key }} ] </tr>
+				<tr> Body[ {{ value[0] }} ] </tr>
+				<tr> User-Id[ {{ value[1] }} ] </tr>
+				<tr> User-name[ {{ value[2] }} ] </tr>
+				<tr> User-image[ {{ value[3] }} ] </tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}

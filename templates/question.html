@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Question {% endblock %}
+
+{% block pagecontent %}
+
+<section>
+
+	<div class="row">
+		<div class="col m6 offset-m3">
+			<a href="#" class="orange-text text-lighten-1">
+				<h4 class="center">Question Details</h4>
+			</a>
+		</div>
+	</div><!-- end: row -->
+
+	
+
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col m12">
+				<div class="card">
+					
+					<div class="card-content">
+						<span class="card-title">{{datas[1]}}</span>
+						
+						<div class="divider"></div>
+						
+						<span>
+							<p>
+							{{datas[2]}}
+							</p>
+						</span>
+
+						<br />
+
+						<span>
+							<a href="" 
+							class="btn-floating left green" 
+							title="Edit Question">
+								<i class="material-icons black-text">edit</i>
+							</a>
+
+							<ul class="right qntags">
+								<li>
+									<div class="chip green lighten-2">	
+										Votes
+									</div>									
+								</li>
+								<li>
+									<div class="chip">
+										{{datas[3]}}
+									</div>									
+								</li>
+								{% if current_user == use_id %}
+									
+										<li>
+											<a href="/delete/{{ datas[0] }}" 
+											class="btn waves-effect waves-green" 
+											title="Edit" >
+												Delete
+											</a>
+											<br>
+										</li>
+									
+									{% endif %}
+								
+								
+							</ul>
+						</span>
+
+						<span>
+							<div class="row">
+								<div class="col m4 offset-m8">
+									<div class="row">
+										<div class="col m2">
+													
+										</div>
+										<div class="col m10">
+											<p> Username  :{{ user[1]}}</p>
+											<p> Field of Interest</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</span>
+						<h5> <u> Answers </u> </h5>
+						<div class="divider"></div>
+						{% if not answerData %}
+						<p>No Answers yet</p>
+						{% else %}
+						{% for key,value in answerData.items() %}
+						<span>
+							
+							<br />
+							<p>
+							
+							{{ value[0] }}
+							</p>
+							<br />
+							<div class="row">
+								<div class="col m6">
+									
+									{% if current_user == use_id %}
+									<ul>
+										<li>
+											<a href="/answer/{{ key }}" 
+											class="btn waves-effect waves-green" 
+											title="Edit" >
+												Accept Answer
+											</a>
+										</li>
+									</ul>
+									{% endif %}
+								</div>
+								<div class="col m6">
+									<div class="row">
+										<div class="col m6  offset-m2 green">
+
+											
+										<div class="col m6 red " >
+											 		
+												<p> Username [{{ value[2] }}]</p> 
+												 <p> Field of Interest</p>
+									   </div>
+									   
+									 </div>
+								</div>
+							</div>
+						</span>
+						{% endfor %}
+						{% endif %}
+						<div class="divider"></div>
+
+						<span>
+							<h6>Your Answer</h6>
+							{% from "includes/_formhelpers.html" import render_field %}
+							<form method="POST" action="" 
+							enctype="multipart/form-data" 
+							id="form_post_qn" class="">
+								<div class="input-field">
+			 	                  {{render_field(form.answer, class="form-control")}}
+			                    </div>
+
+								<div class="input-field center">
+									<input id="post_answer_btn" type="submit" 
+									class="validate btn" 
+									value="Submit Answer" />
+								</div>
+							</form>
+						</span>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div><!-- end: row -->
+
+	</div><!-- end: container -->
+
+</section>
+
+{% endblock %}
+
+
+<!-- more js CODE! here... -->... -->
+{% block morejs %}{% endblock %}

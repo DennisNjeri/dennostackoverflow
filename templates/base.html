@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+   	<meta name="description"	 content="this is the template-base file." />
+	<meta name="author" content="kibuthi.A" />
+
+	<title> {% block pagetitle %}{% endblock %} </title>
+
+	<!-- site logo 
+	<link rel="shortcut icon" href="../tools/siteimages/favicon.ico" /> -->	
+
+	<!-- materialize style rules -->
+	<link rel="stylesheet" type="text/css" 
+	href="{{ url_for('static', filename = 'css/materialize.css') }}" />
+
+	<!-- material-icons.css -->
+	<link rel="stylesheet" type="text/css" 
+	href="{{ url_for('static', filename = 'icons/material-icons.css') }}" />
+
+	<!-- Animate CSS Icons -->
+	<link rel="stylesheet" type="text/css" 
+	href="{{ url_for( 'static', filename = 'css/animate.min.css' ) }}" />
+
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" 
+	href="{{ url_for( 'static', filename = 'css/custom.css' ) }}" />
+
+</head>
+<body>
+
+<!-- nav bar -->
+<nav role="navigation" class="white mainnavbar">
+	<div class="nav-wrapper container">
+		
+		<a id="logo-container" href="/" class="brand-logo black-text">
+			<i class="material-icons">book</i>
+			Stackoverflow Lite Denno
+		</a>
+
+		<ul class="right hide-on-med-and-down">
+			<li>
+				<a href="#" class="black-text" 
+				title="To Home">
+					<i class="material-icons left">home</i>
+					Home
+				</a>
+			</li>
+			<li>
+				<a href="{{ url_for( 'allQn' ) }}" class="black-text" 
+				title="To Home">
+					View Questions
+				</a>
+			</li>
+			<li>
+				<a href="{{ url_for( 'postQn' ) }}" class="black-text" 
+				title="Post a question">
+					<i class="material-icons left">create</i> 
+					Post Question
+				</a>
+			</li>
+			{% if session['logged_in'] %}
+			<li>
+				<a href="{{ url_for( 'logout' ) }}" class="black-text" title="Log out">
+					<i class="material-icons left">account_circle</i>
+					Logout
+				</a>
+			</li>
+    		{%else %}
+    		<li>
+				<a href="{{ url_for( 'signin' ) }}" class="black-text" title="Log In">
+					<i class="material-icons left">account_circle</i>
+					Sign In
+				</a>
+			</li>
+            {% endif %}
+			
+		</ul>
+
+		<ul id="nav-mobile" class="sidenav">
+			<li>
+				<a href="#" class="black-text" 
+				title="To Home">
+					<i class="material-icons left">home</i>
+					Home
+				</a>
+			</li>
+			<li>
+				<a href="{{ url_for( 'allQn' ) }}" class="black-text" 
+				title="To Home">
+					View Questions
+				</a>
+			</li>
+			<li>
+				<a href="{{ url_for( 'postQn' ) }}" class="black-text" 
+				title="View All Questions">
+					<i class="material-icons left">create</i> 
+					Post Question
+				</a>
+			</li>
+			<li>
+				<a href="{{ url_for( 'signin' ) }}" class="black-text" title="Login In">
+					<i class="material-icons left">account_circle</i>
+					Sign In
+				</a>
+			</li>
+		</ul>
+		<a href="#" data-target="nav-mobile" class="sidenav-trigger">
+			<i class="material-icons">menu</i>
+			Menu
+		</a>
+
+	</div>
+</nav><!-- end: nav -->
+
+<!-- page content here... -->
+{% block pagecontent %}{% endblock %}
+
+<!-- footer content here... -->
+<footer class="page-footer blue-grey">
+
+	<div class="container">
+		<div class="row">
+			<div class="col m6 s12">
+				<h5 class="white-text">Services</h5>
+				<p>
+					<a href="index.php" class="grey-text text-lighten-4">
+						<i class="material-icons left">home</i> 
+						Home
+					</a>
+				</p>
+				<p>
+					<a href="all_qns.php" class="grey-text text-lighten-4">
+						<i class="material-icons left">shopping_cart</i> 
+						Questions
+					</a>
+				</p>
+			</div>
+			<div class="col m4 offset-m2 s12">
+				<h5 class="white-text"> About Us </h5>
+				<ul>
+					<li class="grey-text text-lighten-3">
+						+xxx - xx - xxx - xxxx (OFFICE)
+					</li>
+					<li class="grey-text text-lighten-3">
+						+xxx - xxx - xxx - xxx (HOTLINE)
+					</li>
+					<li class="grey-text text-lighten-3">
+						info@stackdenno.co.ke
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-copyright">
+		<div class="container">
+		Copyright © 2018 Stack-Denno. All rights reserved
+		<a class="grey-text text-lighten-4 right" href="#!"> Developed by Njogu </a>
+		</div>
+	</div>
+
+</footer>
+
+<!-- scripts -->
+<script src="{{ url_for( 'static', filename = 'js/jquery-3.3.1.min.js' ) }}"></script>
+<script src="{{ url_for( 'static', filename = 'js/materialize.min.js' ) }}"></script>
+<!--<script src="tools/js/smooth-scroll.polyfills.min.js"></script>-->
+<!--<script src="{{ url_for( 'static', filename = 'js/jquery.waypoints.js' ) }}"></script>
+<script src="tools/js/notify.js"></script>
+<script src="{{ url_for( 'static', filename = 'js/inview.js' ) }}"></script>-->
+<script src="{{ url_for( 'static', filename = 'js/custom.js' ) }}"></script>
+
+<!-- more js CODE! here... -->
+<script>
+{% block morejs %}
+	
+{% endblock %}
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template,flash,session,redirect,logging,url_for,request,send_from_directory
-from flask.ext.mysql import MySQL
+from flaskext.mysql import MySQL
 from functools import wraps
 from wtforms import Form, StringField,TextAreaField,PasswordField, validators
 from wtforms.fields.html5 import EmailField

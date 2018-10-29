@@ -157,7 +157,7 @@ def postQn():
 		conn.commit()
 		flash("Question Posted successfully","Success")
 
-		redirect(url_for('allQn'))
+		return redirect(url_for('allQn'))
 	return render_template( 'post_question.html',form=form )
 
 # allQn - view all questions 
@@ -182,7 +182,7 @@ def viewQn(quiz_id):
 	quiz_id = quiz_id
 	form = AnswerForm(request.form)
 
-	answersquery = cursor.execute( "SELECT * FROM  answer WHERE id=%s",(quiz_id) )
+	answersquery = cursor.execute( "SELECT * FROM  answer WHERE question_id=%s",(quiz_id) )
 	 # answer,user_id
 	if answersquery:
 		print( 'SUCCESS [cursor.excute--select *]' )
@@ -202,6 +202,7 @@ def viewQn(quiz_id):
 			#print( 'ID[ %s ]-body[ %s ]-QnId[ %s ]-ById[ %s ]-UpV[ %s ]-DownV[ %s ]-Status[ %s ]' % ( answerId,answerBody,answerQnId,answerBy,answerUpVotes,answerDownVotes,answerStatus ) )
 			answerData[ answerId ] = []
 			answerData[ answerId ].append( answerBody )
+			answerData[ answerId ].append( answerStatus )
 
 			# get data of user who answered the question
 			userdata = cursor.execute( "SELECT id,username,image FROM  users WHERE id= %s", ( answerBy ) )
@@ -298,12 +299,12 @@ def viewQn(quiz_id):
 def acceptanswer(quiz_id, anw_id):
 	pass
 
-@app.route('/answer/<answer_id>', methods=['GET','POST'] )
-def delUser(answer_id):
+@app.route('/answer/<answer_id>/<quiz_id>', methods=['GET','POST'] )
+def delUser(answer_id=None, quiz_id=None):
 	status="accepted"
 	cursor.execute("UPDATE answer  SET status=%s WHERE id=%s",(status,answer_id))
 	conn.commit()
-	return redirect(url_for('allQn'))
+	return redirect('view_question/'+quiz_id)
 	#pass
 @app.route('/delete/<quiz_id>')
 def delete(quiz_id):

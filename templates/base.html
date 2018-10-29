@@ -114,7 +114,21 @@
 
 	</div>
 </nav><!-- end: nav -->
-
+<br>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="row">
+  	<div class="col m2 "></div>
+    <div class="col m8 green center-align">
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div>
+  {% endif %}
+{% endwith %}
 <!-- page content here... -->
 {% block pagecontent %}{% endblock %}
 

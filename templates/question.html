@@ -102,17 +102,27 @@
 							<br />
 							<div class="row">
 								<div class="col m6">
-									
-									{% if current_user == use_id %}
+									{% if value[1] =='accepted'  %}
 									<ul>
 										<li>
-											<a href="/answer/{{ key }}" 
+											<a href="#" 
+											class="btn waves-effect waves-green" 
+											title="Edit" >
+												Right Answer
+											</a>
+										</li>
+										</ul>
+									{% elif current_user == use_id %}
+									<ul>
+										<li>
+											<a href="/answer/{{ key }}/{{datas[0]}}" 
 											class="btn waves-effect waves-green" 
 											title="Edit" >
 												Accept Answer
 											</a>
 										</li>
 									</ul>
+
 									{% endif %}
 								</div>
 								<div class="col m6">
@@ -122,7 +132,7 @@
 											
 										<div class="col m6 red " >
 											 		
-												<p> Username [{{ value[2] }}]</p> 
+												<p> Username [{{ value[3] }}]</p> 
 												 <p> Field of Interest</p>
 									   </div>
 									   
@@ -167,4 +177,18 @@
 
 
 <!-- more js CODE! here... -->... -->
-{% block morejs %}{% endblock %}
+{% block morejs %}
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+{% endblock %}

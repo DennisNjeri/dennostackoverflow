@@ -27,6 +27,9 @@ app.config['MYSQL_DATABASE_USER'] = 'Dnjeri'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'adan'
 app.config['MYSQL_DATABASE_DB'] = 'overflow'
 #app.config['MYSQL_DATABASE_CHARSET'] = 'utf-8'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
 mysql.init_app(app)
 conn=mysql.connect()
 cursor = conn.cursor()

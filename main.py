@@ -10,6 +10,8 @@ import time
 #from flask_wtf.file import FileField, FileRequired, FileAllowed
 #from werkzeug.utils import secure_filename
 
+from flask.ext.sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 mysql = MySQL()
@@ -29,6 +31,8 @@ app.config['MYSQL_DATABASE_DB'] = 'overflow'
 #app.config['MYSQL_DATABASE_CHARSET'] = 'utf-8'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
+db = SQLAlchemy(app)
 
 mysql.init_app(app)
 conn=mysql.connect()

@@ -5,7 +5,7 @@ from functools import wraps
 from wtforms import Form, StringField,TextAreaField,PasswordField, validators
 from wtforms.fields.html5 import EmailField
 from flask_bcrypt import Bcrypt
-from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from flaskext.uploads import UploadSet, configure_uploads, IMAGES
 import time
 #from flask_wtf.file import FileField, FileRequired, FileAllowed
 #from werkzeug.utils import secure_filename
